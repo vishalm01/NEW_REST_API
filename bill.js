@@ -26,40 +26,40 @@ billing.controller("billCtrl", function ($scope, $http) {
 
   $scope.newItem = {
     _id: null,
-    itemName: "",
+    name: "",
     quantity: 1.0,
-    MRP: 0.0,
-    Rate: 0.0,
+    mrp: 0.0,
+    rate: 0.0,
   };
 
-  $scope.$watch("newItem.itemName", function (newVal) {
-    let item = $scope.items?.find((item) => item.itemName === newVal);
+  $scope.$watch("newItem.name", function (newVal) {
+    let item = $scope.items?.find((item) => item.name === newVal);
     if (item) {
       $scope.newItem._id = item._id; // Assign MongoDB _id
-      $scope.newItem.MRP = item.MRP;
-      $scope.newItem.Rate = item.Rate;
+      $scope.newItem.mrp = item.mrp;
+      $scope.newItem.rate = item.rate;
     } else {
       $scope.newItem._id = null;
-      $scope.newItem.MRP = 0.0;
-      $scope.newItem.Rate = 0.0;
+      $scope.newItem.mrp = 0.0;
+      $scope.newItem.rate = 0.0;
     }
   });
 
   $scope.addItem = function () {
     if (
-      $scope.newItem.itemName &&
+      $scope.newItem.name &&
       $scope.newItem.quantity > 0 &&
       $scope.newItem._id
     ) {
       let index = $scope.items.findIndex(
-        (item) => item.itemName === $scope.newItem.itemName
+        (item) => item.name === $scope.newItem.name
       );
       if (index !== -1) {
         $scope.billedItems.push({
           _id: $scope.newItem._id, // Use MongoDB _id
-          itemName: $scope.newItem.itemName,
-          MRP: parseFloat($scope.newItem.MRP),
-          Rate: parseFloat($scope.newItem.Rate),
+          name: $scope.newItem.name,
+          mrp: parseFloat($scope.newItem.mrp),
+          rate: parseFloat($scope.newItem.rate),
           quantity: parseFloat($scope.newItem.quantity),
         });
 
@@ -67,12 +67,12 @@ billing.controller("billCtrl", function ($scope, $http) {
         $scope.updateBalance();
         $scope.newItem = {
           _id: null,
-          itemName: "",
+          name: "",
           quantity: 1.0,
-          MRP: 0.0,
-          Rate: 0.0,
+          mrp: 0.0,
+          rate: 0.0,
         };
-        document.getElementById("itemNameInput").focus();
+        document.getElementById("nameInput").focus();
       } else {
         alert("Item not found or invalid input");
       }
@@ -89,7 +89,7 @@ billing.controller("billCtrl", function ($scope, $http) {
 
   $scope.calculateTotal = function () {
     return $scope.billedItems.reduce(function (total, item) {
-      return total + item.Rate * item.quantity;
+      return total + item.rate * item.quantity;
     }, 0);
   };
 
@@ -105,9 +105,9 @@ billing.controller("billCtrl", function ($scope, $http) {
   $scope.selectedIndex = -1;
 
   $scope.filterItems = function () {
-    var query = $scope.newItem.itemName.toLowerCase();
+    var query = $scope.newItem.name.toLowerCase();
     $scope.filteredItems = $scope.items.filter(function (item) {
-      return item.itemName.toLowerCase().includes(query);
+      return item.name.toLowerCase().includes(query);
     });
     if ($scope.filteredItems.length > 0) {
       $scope.selectedIndex = 0; // Highlight the first item
@@ -117,7 +117,7 @@ billing.controller("billCtrl", function ($scope, $http) {
   };
 
   $scope.selectItem = function (item) {
-    $scope.newItem.itemName = item.itemName;
+    $scope.newItem.name = item.name;
     $scope.newItem._id = item._id; // Assign the MongoDB _id
     $scope.filteredItems = []; // Clear the dropdown after selection
     $scope.selectedIndex = -1; // Reset selected index
@@ -191,7 +191,7 @@ billing.controller("billCtrl", function ($scope, $http) {
       .then(function (response) {
         console.log("Order saved successfully:", response.data);
         // Redirect to billItem.html if needed
-        window.location.href = "billItem.html";
+        alert("BILL ADDED TO DATABASE");
       })
       .catch(function (error) {
         console.error("Error saving order:", error);

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <link
+    <link`
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
       integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
@@ -95,11 +95,11 @@
             <tbody id="purchasingItems">
               <tr ng-repeat="item in billedItems">
                 <td class="text-center">{{ item.sno }}</td>
-                <td>{{ item.itemName }}</td>
-                <td>{{ item.MRP | currency: "₹" }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.mrp | currency: "₹" }}</td>
                 <td>{{ item.quantity }}</td>
-                <td>{{ item.Rate | currency: "₹" }}</td>
-                <td>{{ (item.Rate * item.quantity) | currency: "₹" }}</td>
+                <td>{{ item.rate | currency: "₹" }}</td>
+                <td>{{ (item.rate * item.quantity) | currency: "₹" }}</td>
                 <td class="text-center">
                   <button
                     type="button"
@@ -117,8 +117,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="itemNameInput"
-                    ng-model="newItem.itemName"
+                    id="nameInput"
+                    ng-model="newItem.name"
                     ng-keydown="handleKeydown($event)"
                     ng-change="filterItems()"
                     placeholder="Enter Item Name"
@@ -131,7 +131,7 @@
                       ng-click="selectItem(item)"
                       ng-keydown="handleKeydown($event)"
                     >
-                      {{ item.itemName }}
+                      {{ item.name }}
                     </li>
                   </ul>
                 </td>
@@ -139,8 +139,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    ng-model="newItem.MRP"
-                    placeholder="MRP"
+                    ng-model="newItem.mrp"
+                    placeholder="mrp"
                     disabled
                   />
                 </td>
@@ -156,12 +156,12 @@
                   <input
                     type="text"
                     class="form-control"
-                    ng-model="newItem.Rate"
-                    placeholder="Rate"
+                    ng-model="newItem.rate"
+                    placeholder="rate"
                     disabled
                   />
                 </td>
-                <td>{{ (newItem.Rate * newItem.quantity) | currency: "₹" }}</td>
+                <td>{{ (newItem.rate * newItem.quantity) | currency: "₹" }}</td>
                 <td class="text-center">
                   <button
                     type="button"

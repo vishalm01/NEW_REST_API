@@ -1,24 +1,25 @@
 body {
-    background: rgb(28, 28, 34);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background: rgb(28, 28, 34);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container-fluid {
-    width: 100vw;
-    background-color: whitesmoke;
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 10px;
-    height: auto;
+  width: 95vw;
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 10px;
+  height: auto;
 }
 
-th, td {
-    text-align: center;
+th,
+td {
+  text-align: center;
 }
 
 .table {
-    width: 100%;
-    margin-bottom: 0;
+  width: 100%;
+  margin-bottom: 0;
 }
