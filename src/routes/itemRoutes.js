@@ -1,22 +1,22 @@
-const {createItem,getAllItems,getItemById,deleteItem,updateItem} = require('../conrollers/ItemController');
+const {
+  createItem,
+  getAllItems,
+  getItemById,
+  deleteItem,
+  updateItem,
+} = require("../conrollers/ItemController");
 
-const router = require('express').Router();
+const router = require("express").Router();
 
 // get the user by category
-router.post('/create',createItem ); 
+router.post("/create", createItem);
 
-router.get('/',getAllItems );
+router.get("/", getAllItems);
 
-router.get('/:id',getItemById );
+router.get("/:id", getItemById);
 
-router.put('/:id',updateItem );
+router.put("/:id", updateItem);
 
-router.delete('/:id',deleteItem );
-
-
-
-
-
-
+router.delete("/:id", deleteItem);
 
 module.exports = router;
